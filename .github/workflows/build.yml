@@ -26,10 +26,10 @@ jobs:
       - name: 构建静态文件
         run: bundle exec jekyll build
       - name: 下载 qshell 工具
-        run: sh ./scripts/qshell.sh
+        run: sh ./_scripts/qshell.sh
       - name: 给 qshell 权限
         run: chmod +x qshell
       - name: 将 404 文件修改
         run: mv ./_site/errno-404.html ./_site/errno-404
       - name: 使用 qshell 执行上传命令
-        run: sh ./scripts/deploy.sh ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }}
+        run: sh ./_scripts/deploy.sh ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }}
