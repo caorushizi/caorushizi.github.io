@@ -26,37 +26,10 @@ jobs:
       - name: 构建静态文件
         run: bundle exec jekyll build
       - name: 下载 qshell 工具
-        run: |
-          wget http://devtools.qiniu.com/qshell-linux-x64-v2.4.2.zip -O qshell.zip && \
-          unzip qshell.zip -d tmp && \
-          mv tmp/qsh* qshell
-      - name: 查看目录文件
-        run: ls
+        run: sh ./scripts/qshell.sh
       - name: 给 qshell 权限
         run: chmod +x qshell
       - name: 将 404 文件修改
         run: mv ./_site/errno-404.html ./_site/errno-404
       - name: 使用 qshell 执行上传命令
-        run: |
-          ./qshell account ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }} blogfile && \
-          ./qshell qupload2 --src-dir=./_site --bucket=zy-blogfile --check-exists --check-hash --thread-count=5 --overwrite --success-list=success.txt && \
-          echo '===============================================' && \
-          echo '=                success.txt                  =' && \
-          echo '===============================================' && \
-          cat success.txt && \
-          echo '===============================================' && \
-          cat success.txt | awk '{printf "https://blog.ziying.site/%s\n", $2, $2}' | sed -e "s/index.html//" > refresh.txt && \
-          echo '===============================================' && \
-          echo '=                refresh.txt                  =' && \
-          echo '===============================================' && \
-          cat refresh.txt && \
-          echo '===============================================' && \
-          ./qshell cdnrefresh -i refresh.txt && \
-          cat success.txt | awk '{printf "https://www.blog.ziying.site/%s\n", $2, $2}' | sed -e "s/index.html//" > refresh.www.txt && \
-          echo '===============================================' && \
-          echo '=              refresh.www.txt                =' && \
-          echo '===============================================' && \
-          cat refresh.www.txt && \
-          echo '===============================================' && \
-          ./qshell cdnrefresh -i refresh.www.txt
-
+        run: sh ./scripts/deploy.sh ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }}
