@@ -42,14 +42,14 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
+    favicon: "/favicon.ico"
     favicon16x16: "<link / abs url>"
     favicon32x32: "<link / abs url>"
     apple_touch_icon: "<link / abs url>"
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "首页"
+    text: "士子☀的博客"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
@@ -74,10 +74,6 @@ params:
     Content: Welcome to my blog
 
   socialIcons:
-    - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
     - name: github
       url: "https://github.com/"
 
@@ -114,19 +110,19 @@ menu:
     - identifier: categories
       name: 分类
       url: /categories/
-      weight: 10
+      weight: 30
     - identifier: tags
       name: 标签
       url: /tags/
       weight: 20
     - identifier: about
       name: 关于
-      url: https://example.org
-      weight: 30
+      url: /about/
+      weight: 40
     - identifier: archive
       name: 归档
-      url: https://example.org
-      weight: 40
+      url: /archive/
+      weight: 10
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
 # markup:
