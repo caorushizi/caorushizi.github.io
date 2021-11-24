@@ -1,0 +1,27 @@
+{{- $scratch := newScratch }}
+{{- $fileUrlPath := path.Join .File.Path }}
+
+{{- if not .Date.IsZero -}}
+{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date.Format (default "January 2, 2006" .Site.Params.DateFormat)))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+{{- $scratch.Add "meta" (slice (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime))) }}
+{{- end }}
+
+{{- with (partial "author.html" .) }}
+{{- $scratch.Add "meta" (slice .) }}
+{{- end }}
+
+
+
+{{- with ($scratch.Get "meta") }}
+{{- delimit . "&nbsp;·&nbsp;" -}}
+{{- end -}}
+
+<!-- id 将作为查询条件 -->
+<div id="{{ .Permalink | relURL }}" class="leancloud_visitors post-time" data-flag-title="{{ .Title }}">
+    &nbsp;·&nbsp;
+    <span class="post-meta-item-text">阅读数量</span>
+    <span class="leancloud-visitors-count"></span>
+</div>

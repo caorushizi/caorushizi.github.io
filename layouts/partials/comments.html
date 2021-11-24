@@ -1,0 +1,18 @@
+{{- /* Comments area start */ -}}
+{{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
+{{- /* Comments area end */ -}}
+
+<div id="vcomments"></div>
+<script src="https://cdn.bootcdn.net/ajax/libs/valine/1.4.14/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: '#vcomments',
+    appId: '9rMjHbYxMgvBJNYyuIwaCM7N-gzGzoHsz',
+    appKey: 'ELMy5VeLOUE8evOKpQymntcI',
+    placeholder: '快来评论下吧～',
+    avatar: 'hide',
+    visitor: true,
+    meta: ['nick', 'mail'],
+    requiredFields: ['nick']
+  })
+</script>
