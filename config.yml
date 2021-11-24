@@ -1,6 +1,6 @@
 baseURL: "https://ziying.site/"
 title: 士子☀️的博客
-paginate: 5
+paginate: 10
 theme: PaperMod
 
 enableRobotsTXT: true
