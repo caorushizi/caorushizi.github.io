@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: 将 master 分支检出
         uses: actions/checkout@v2
+      - name: 下载子模块
+        run: git submodule update --init --recursive
       - name: 下载 qshell 工具
         run: sh ./scripts/qshell.sh
       - name: 打包网站代码
