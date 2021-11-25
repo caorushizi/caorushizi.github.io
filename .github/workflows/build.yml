@@ -13,7 +13,7 @@ jobs:
       - name: 下载 qshell 工具
         run: sh ./scripts/qshell.sh
       - name: 打包网站代码
-        run: hugo -D
+        run: ./hugo -D
       - name: 将 404 文件修改
         run: mv ./public/404.html ./public/errno-404
       - name: 使用 qshell 执行上传命令
