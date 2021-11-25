@@ -8,28 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 安装 Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6
       - name: 将 master 分支检出
         uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      - name: 使用 bundle 安装 github-pages
-        run: |
-          bundle init && \
-          bundle config path vendor/bundle && \
-          bundle add github-pages
-      - name: 构建静态文件
-        run: bundle exec jekyll build
       - name: 下载 qshell 工具
         run: sh ./_scripts/qshell.sh
-      - name: 给 qshell 权限
-        run: chmod +x qshell
+      - name: 打包网站代码
+        run: hugo -D
       - name: 将 404 文件修改
-        run: mv ./_site/errno-404.html ./_site/errno-404
+        run: mv ./public/404.html ./public/errno-404
       - name: 使用 qshell 执行上传命令
-        run: sh ./_scripts/deploy.sh ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }}
+        run: sh ./scripts/deploy.sh ${{ secrets.QINIU_AK }} ${{ secrets.QINIU_SK }}

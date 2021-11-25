@@ -4,7 +4,7 @@
 ./qshell account "$1" "$2" blogfile
 
 # 上传文件并输出上传成功列表
-./qshell qupload2 --src-dir=./_site --bucket=zy-blogfile --check-exists --check-hash --thread-count=5 --overwrite --success-list=success.txt
+./qshell qupload2 --src-dir=./public --bucket=zy-blogfile --check-exists --check-hash --thread-count=5 --overwrite --success-list=success.txt
 
 echo '==============================================='
 echo '=                success.txt                  ='
