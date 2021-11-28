@@ -20,8 +20,8 @@
 {{- end -}}
 
 <!-- id 将作为查询条件 -->
-<div id="{{ .Permalink | relURL }}" class="leancloud_visitors post-time" data-flag-title="{{ .Title }}">
+<span id="{{ .Permalink | relURL }}" class="leancloud_visitors" data-flag-title="{{ .Title }}">
     &nbsp;·&nbsp;
     <span class="post-meta-item-text">阅读数量</span>
     <span class="leancloud-visitors-count"></span>
-</div>
+</span>
