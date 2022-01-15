@@ -24,8 +24,6 @@
 
 <body>
 
-{{ partialCached "preloader.html" . }}
-
 <!-- site wrapper -->
 <div class="site-wrapper">
 
@@ -145,6 +143,7 @@
 <script src="https://cdn.staticfile.org/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.min.js"></script>
 <script src="https://cdn.staticfile.org/sticky-sidebar/3.3.1/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
 {{ $script := resources.Get "js/global.js" | resources.Minify }}
 <script src="{{ $script.RelPermalink }}"></script>
 

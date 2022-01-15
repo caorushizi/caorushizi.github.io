@@ -2,7 +2,6 @@
    File Description: Main Css file of the template
 */
 /****************************************
-���ྫƷģ�壺http://www.bootstrapmb.com
 01.variables
 02.general
 03.helper
@@ -19,7 +18,7 @@
 
 
 *****************************************/
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.loli.net/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 body {
   font-family: "Montserrat", sans-serif;
   color: #1a3365;

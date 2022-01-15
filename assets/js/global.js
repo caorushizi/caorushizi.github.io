@@ -158,6 +158,18 @@ $(document).ready(function() {
       $('body').toggleClass("down", (fromTop > 300));
     });
 
+    // comments
+    new Valine({
+        el: '#vcomments',
+        appId: '9rMjHbYxMgvBJNYyuIwaCM7N-gzGzoHsz',
+        appKey: 'ELMy5VeLOUE8evOKpQymntcI',
+        placeholder: '快来评论下吧～',
+        avatar: 'hide',
+        visitor: true,
+        meta: ['nick', 'mail'],
+        requiredFields: ['nick']
+    })
+
 });
 
 $(function(){
@@ -256,3 +268,11 @@ $(function(){
     }
 
 });
+
+var _hmt = _hmt || [];
+(function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?7af2e1746336480a39dd4092b5a11911";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
