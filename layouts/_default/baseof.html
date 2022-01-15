@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Katen - Minimal Blog & Magazine HTML Theme</title>
+    <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/5.1.3/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.5.0/css/all.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.3.11/slick.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/simple-line-icons/2.5.5/css/simple-line-icons.min.css" type="text/css" media="all">
+    {{ $style := resources.Get "css/global.css" | resources.Minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" type="text/css" media="all">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{{ partialCached "preloader.html" . }}
+
+<!-- site wrapper -->
+<div class="site-wrapper">
+
+    <div class="main-overlay"></div>
+
+    {{ partialCached "header.html" . }}
+
+    <!-- section main content -->
+    <section class="main-content">
+        <div class="container-xl">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+
+                    {{ block "main" . }}
+                        
+                    {{ end }}
+
+                </div>
+                <div class="col-lg-4">
+
+                    <!-- sidebar -->
+                    <div class="sidebar">
+
+                        {{ partialCached "categories_widget" . }}
+
+                        {{ partialCached "post_carousel_widget" . }}
+
+                        {{ partialCached "advertisement_widget" . }}
+
+                        {{ partialCached "tags_widget" . }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {{ partialCached "footer.html" . }}
+
+</div><!-- end site wrapper -->
+
+<!-- search popup area -->
+<div class="search-popup">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Close"></button>
+    <!-- content -->
+    <div class="search-content">
+        <div class="text-center">
+            <h3 class="mb-4 mt-0">Press ESC to close</h3>
+        </div>
+        <!-- form -->
+        <form class="d-flex search-form">
+            <input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+            <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
+        </form>
+    </div>
+</div>
+
+<!-- canvas menu -->
+<div class="canvas-menu d-flex align-items-end flex-column">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Close"></button>
+
+    <!-- logo -->
+    <div class="logo">
+        <img src="https://static.ziying.site/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/wave.svg" alt="Katen" />
+    </div>
+
+    <!-- menu -->
+    <nav>
+        <ul class="vertical-menu">
+            <li class="active">
+                <a href="index.html">Home</a>
+                <ul class="submenu">
+                    <li><a href="index.html">Magazine</a></li>
+                    <li><a href="personal.html">Personal</a></li>
+                    <li><a href="personal-alt.html">Personal Alt</a></li>
+                    <li><a href="minimal.html">Minimal</a></li>
+                    <li><a href="classic.html">Classic</a></li>
+                </ul>
+            </li>
+            <li><a href="category.html">Lifestyle</a></li>
+            <li><a href="category.html">Inspiration</a></li>
+            <li>
+                <a href="#">Pages</a>
+                <ul class="submenu">
+                    <li><a href="category.html">Category</a></li>
+                    <li><a href="blog-single.html">Blog Single</a></li>
+                    <li><a href="blog-single-alt.html">Blog Single Alt</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- social icons -->
+    <ul class="social-icons list-unstyled list-inline mb-0 mt-auto w-100">
+        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
+        <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+    </ul>
+</div>
+
+<!-- JAVA SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/2.11.2/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.min.js"></script>
+<script src="https://cdn.staticfile.org/sticky-sidebar/3.3.1/jquery.sticky-sidebar.min.js"></script>
+{{ $script := resources.Get "js/global.js" | resources.Minify }}
+<script src="{{ $script.RelPermalink }}"></script>
+
+</body>
+</html>

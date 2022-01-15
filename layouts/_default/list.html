@@ -1,0 +1,87 @@
+{{ define "main" }}
+<div class="row gy-4">
+
+    {{- $pages := union .RegularPages .Sections }}
+
+    {{- if .IsHome }}
+    {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{- end }}
+
+    {{- $paginator := .Paginate $pages }}
+
+    {{ if .IsHome }}
+        {{ partialCached "featured_post" . }}
+    {{ end }}
+
+    {{- $term := .Data.Term }}
+    {{- range $paginator.Pages }}
+
+    <div class="col-sm-6">
+        <!-- post -->
+        <div class="post post-grid rounded bordered">
+            <div class="thumb top-rounded">
+                <a href="category.html" class="category-badge position-absolute">{{ delimit .Params.categories "," }}</a>
+                <span class="post-format">
+                    <i class="icon-camrecorder"></i>
+                </span>
+                <a href="blog-single.html">
+                    <div class="inner">
+                        <img src="http://static.ziying.site/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/20210126225419.webp" alt="post-title" />
+                    </div>
+                </a>
+            </div>
+            <div class="details">
+                <ul class="meta list-inline mb-0">
+                    <li class="list-inline-item">{{ .Date.Format "2006年01月02日" }}</li>
+                    <li class="list-inline-item">阅读量</li>
+                </ul>
+                <h5 class="post-title mb-3 mt-3">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}{{- if .Draft }}[草稿]{{- end }}</a>
+                </h5>
+                <p class="excerpt mb-0">{{  (.Summary | plainify | htmlUnescape )  }}{{ if .Truncated }}...{{ end }}</p>
+            </div>
+            <div class="post-bottom clearfix d-flex align-items-center">
+                <div class="social-share me-auto">
+                    <button class="toggle-button icon-share"></button>
+                    <ul class="icons list-unstyled list-inline mb-0">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="far fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="more-button float-end">
+                    <a href="blog-single.html"><span class="icon-options"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{- end }}
+
+</div>
+
+
+{{ $currentPath := .Permalink }}
+{{- if gt $paginator.TotalPages 1 }}
+<nav>
+    <ul class="pagination justify-content-center">
+        {{ range $index , $num := $paginator.Pagers }}
+            {{ $currentPageNum := add $index 1 }}
+            {{ if eq $paginator.PageNumber $currentPageNum }}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">{{ $currentPageNum }}</span>
+                </li>
+            {{ else }}
+                <li class="page-item">
+                    <a class="page-link" href="{{ printf `%spage/%d` $currentPath $currentPageNum | absURL }}">{{ $currentPageNum }}</a>
+                </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+</nav>
+{{- end }}
+
+{{ end }}
