@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Katen - Minimal Blog & Magazine HTML Theme</title>
+    <meta name="description" content="Katen - Minimal Blog & Magazine HTML Theme">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/bootstrap/5.1.3/css/bootstrap.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.5.0/css/all.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.3.11/slick.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/simple-line-icons/2.5.5/css/simple-line-icons.min.css" type="text/css" media="all">
+    {{ $style := resources.Get "css/global.css" | resources.Minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" type="text/css" media="all">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- site wrapper -->
+<div class="site-wrapper">
+
+    <div class="main-overlay"></div>
+
+    {{ partial "header.html" . }}
+
+    <!-- section main content -->
+    <section class="main-content">
+        <div class="container-xl">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+
+                    {{ block "main" . }}{{ end }}
+
+                </div>
+                <div class="col-lg-4">
+
+                    <!-- sidebar -->
+                    <div class="sidebar">
+
+                        {{ partialCached "categories_widget" . }}
+
+                        {{ partialCached "post_carousel_widget" . }}
+
+                        {{ partialCached "advertisement_widget" . }}
+
+                        {{ partialCached "tags_widget" . }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {{ partialCached "footer.html" . }}
+
+</div><!-- end site wrapper -->
+
+<!-- search popup area -->
+<div class="search-popup">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Close"></button>
+    <!-- content -->
+    <div class="search-content">
+        <div class="text-center">
+            <h3 class="mb-4 mt-0">Press ESC to close</h3>
+        </div>
+        <!-- form -->
+        <form class="d-flex search-form">
+            <input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+            <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
+        </form>
+    </div>
+</div>
+
+<!-- canvas menu -->
+<div class="canvas-menu d-flex align-items-end flex-column">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Close"></button>
+
+    <!-- logo -->
+    <div class="logo">
+        <img src="https://static.ziying.site/blog-logo.png" />
+    </div>
+
+    <!-- menu -->
+    <nav>
+        <ul class="vertical-menu">
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="/categories">分类</a></li>
+            <li><a href="/tags">标签</a></li>
+<!--            <li>-->
+<!--                <a href="#">Pages</a>-->
+<!--                <ul class="submenu">-->
+<!--                    <li><a href="category.html">Category</a></li>-->
+<!--                    <li><a href="blog-single.html">Blog Single</a></li>-->
+<!--                    <li><a href="blog-single-alt.html">Blog Single Alt</a></li>-->
+<!--                    <li><a href="about.html">About</a></li>-->
+<!--                    <li><a href="contact.html">Contact</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+            <li><a href="/about">关于</a></li>
+        </ul>
+    </nav>
+
+</div>
+
+<!-- JAVA SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/popper.js/2.11.2/umd/popper.min.js"></script>
+<script src="https://cdn.staticfile.org/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.min.js"></script>
+<script src="https://cdn.staticfile.org/sticky-sidebar/3.3.1/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+{{ $script := resources.Get "js/global.js" | resources.Minify }}
+<script src="{{ $script.RelPermalink }}"></script>
+
+</body>
+</html>

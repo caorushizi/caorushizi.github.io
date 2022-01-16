@@ -1,0 +1,75 @@
+{{ define "main" }}
+<div class="row gy-4">
+
+    {{- $pages := union .RegularPages .Sections }}
+
+    {{- if .IsHome }}
+    {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{- end }}
+
+    {{- $paginator := .Paginate $pages }}
+
+    {{ if .IsHome }}
+        {{ partialCached "featured_post" . }}
+    {{ end }}
+
+    {{- $term := .Data.Term }}
+    {{- range $paginator.Pages }}
+
+    <div class="col-sm-6">
+        <!-- post -->
+        <div class="post post-grid rounded bordered">
+            <div class="thumb top-rounded">
+                <a href="{{ printf `categories/%s` (index .Params.categories 0) | absURL }}" class="category-badge position-absolute">{{ delimit .Params.categories "," }}</a>
+                <span class="post-format">
+                    <i class="icon-camrecorder"></i>
+                </span>
+                <a href="{{ .RelPermalink }}">
+                    <div class="inner">
+                        <img src="https://static.ziying.site/upload/164988-ios_14.jpg" alt="post-title" />
+                    </div>
+                </a>
+            </div>
+            <div class="details">
+                <ul class="meta list-inline mb-0">
+                    <li class="list-inline-item">{{ .Date.Format "2006年01月02日" }}</li>
+                    <li class="list-inline-item leancloud_visitors" id="{{ .Permalink | relURL }}" data-flag-title="{{ .Title }}">
+                        <span class="post-meta-item-text">阅读数量</span>
+                        <span class="leancloud-visitors-count"></span>
+                    </li>
+                </ul>
+                <h5 class="post-title mb-3 mt-3" title="{{ .Title }}{{- if .Draft }}[草稿]{{- end }}">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}{{- if .Draft }}[草稿]{{- end }}</a>
+                </h5>
+                {{ $contentStrNum := (.Summary | plainify | htmlUnescape) }}
+                <p class="excerpt mb-0">{{  substr $contentStrNum 0 100  }}{{ if gt (len $contentStrNum) 100 }}...{{ end }}</p>
+            </div>
+        </div>
+    </div>
+
+    {{- end }}
+
+</div>
+
+
+{{ $currentPath := .Permalink }}
+{{- if gt $paginator.TotalPages 1 }}
+<nav>
+    <ul class="pagination justify-content-center">
+        {{ range $index , $num := $paginator.Pagers }}
+            {{ $currentPageNum := add $index 1 }}
+            {{ if eq $paginator.PageNumber $currentPageNum }}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">{{ $currentPageNum }}</span>
+                </li>
+            {{ else }}
+                <li class="page-item">
+                    <a class="page-link" href="{{ printf `%spage/%d` $currentPath $currentPageNum | absURL }}">{{ $currentPageNum }}</a>
+                </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+</nav>
+{{- end }}
+
+{{ end }}
