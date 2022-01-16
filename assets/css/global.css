@@ -695,6 +695,10 @@ body.down .header-default.clone, body.down .header-personal nav.clone, body.down
   margin-right: 0;
 }
 
+.navbar-brand img {
+  height: 30px;
+}
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -894,6 +898,9 @@ body.down .header-default.clone, body.down .header-personal nav.clone, body.down
   margin-top: 50px;
   width: 100%;
 }
+.canvas-menu .logo img {
+  height: 30px;
+}
 .canvas-menu nav {
   width: 100%;
 }
@@ -1017,6 +1024,7 @@ section {
 
 .main-content {
   margin-top: 60px;
+  min-height: 1000px;
 }
 
 .main-content-lg {

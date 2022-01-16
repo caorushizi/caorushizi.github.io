@@ -15,11 +15,16 @@
         </div>
         <!-- featured image -->
         <div class="featured-image">
-            <img src="http://static.ziying.site/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/singed.jpg" alt="post-title" />
+            <img src="https://static.ziying.site/upload/164988-ios_14.jpg" alt="post-title" />
         </div>
         <!-- post content -->
         <div class="post-content clearfix">
-            {{ .Content }}
+            {{- if .Description }}
+                {{ .Description }}
+            {{- end }}
+            {{ if .Content }}
+                {{ .Content }}
+            {{ end }}
         </div>
         <!-- post bottom section -->
         <div class="post-bottom">
