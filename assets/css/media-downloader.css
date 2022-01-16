@@ -818,7 +818,7 @@ html {
   position: relative;
 }
 .pricing .pricing-bg::before {
-  background-image: url(/pricing-box.png);
+  background-image: url(/pricing-box.jpg);
   content: "";
   position: absolute;
   top: -54px;
