@@ -5,7 +5,7 @@
             <!-- site logo -->
             <a class="navbar-brand" href="{{ `/` | absURL }}"><img src="https://static.ziying.site/blog-logo.png" alt="logo" /></a>
 
-            {{ $page_url:= .URL | absURL }}
+            {{ $page_url:= .Permalink | absURL }}
             <div class="collapse navbar-collapse">
                 <!-- menus -->
                 <ul class="navbar-nav mr-auto">
