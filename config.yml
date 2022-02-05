@@ -111,6 +111,10 @@ params:
     keys: [ "title", "permalink", "summary", "content" ]
 menu:
   main:
+    - identifier: index
+      name: 首页
+      url: /
+      weight: 10
     - identifier: categories
       name: 分类
       url: /categories/
