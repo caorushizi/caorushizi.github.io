@@ -19,7 +19,7 @@ defaultContentLanguage: "zh"
 defaultContentLanguageInSubdir: true
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  env: development # to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
   description: "ExampleSite description"
   keywords: [ Blog, 士子☀的博客, 曹儒士子, 博客, 个人博客 ]
