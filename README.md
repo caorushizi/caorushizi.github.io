@@ -1,15 +1,13 @@
 # 使用说明
 
-- 安装 ruby 环境
-- 安装 gem
-- 安装 github-pages
+- 安装 hugo
 
 ```shell script
-gem install github-pages
+git submodule update --init --recursive
 ```
 
 - 本地运行
 
 ```shell script
-jekyll server
+hugo server
 ```

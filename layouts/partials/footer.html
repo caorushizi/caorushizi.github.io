@@ -149,14 +149,13 @@
 </script>
 
 <script>
-  new Valine({
+  new Waline({
     el: '#vcomments',
-    appId: '9rMjHbYxMgvBJNYyuIwaCM7N-gzGzoHsz',
-    appKey: 'ELMy5VeLOUE8evOKpQymntcI',
     placeholder: '快来评论下吧～',
     avatar: 'hide',
     visitor: true,
     meta: ['nick', 'mail'],
-    requiredFields: ['nick']
+    requiredFields: ['nick'],
+    serverURL: 'https://blog-comments-server.vercel.app',
   })
 </script>

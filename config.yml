@@ -25,7 +25,7 @@ params:
   keywords: [ Blog, 士子☀的博客, 曹儒士子, 博客, 个人博客 ]
   author: 士子☀
   DateFormat: "2006年01月02日"
-  defaultTheme: auto # dark, light, auto
+  defaultTheme: light # dark, light, auto
   disableThemeToggle: true
 
   ShowReadingTime: false
