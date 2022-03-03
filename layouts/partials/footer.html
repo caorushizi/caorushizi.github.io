@@ -119,7 +119,7 @@
             try {
                 document.execCommand('copy');
                 copyingDone();
-            } catch (e) { };
+            } catch (e) { }
             selection.removeRange(range);
         });
 
@@ -138,25 +138,29 @@
 </script>
 {{- end }}
 
-<script>
-  var _hmt = _hmt || [];
-  (function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?7af2e1746336480a39dd4092b5a11911";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
+{{- if hugo.IsProduction | or (eq .Site.Params.env "production") }}
+<script defer>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7af2e1746336480a39dd4092b5a11911";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
+{{- end -}}
 
+{{- $visitor := hugo.IsProduction }}
+<script src="https://cdn.staticfile.org/waline/1.5.4/Waline.min.js"></script>
 <script>
-  new Waline({
-    el: '#vcomments',
-    placeholder: '快来评论下吧～',
-    avatar: 'hide',
-    visitor: true,
-    meta: ['nick', 'mail'],
-    requiredFields: ['nick'],
-    serverURL: 'https://comments.ziying.site',
-    dark: 'auto'
-  })
+    var visitor = Boolean({{ $visitor }})
+    new Waline({
+        el: '#vcomments',
+        avatar: 'hide',
+        visitor: visitor,
+        meta: ['nick', 'mail'],
+        requiredFields: ['nick'],
+        serverURL: 'https://comments.ziying.site',
+        dark: 'auto'
+    })
 </script>
