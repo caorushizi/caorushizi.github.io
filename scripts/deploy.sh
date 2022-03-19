@@ -20,7 +20,6 @@ cat refresh.txt
 
 # 使用七牛云工具刷新CDN缓存
 ./qshell cdnrefresh -i refresh.txt
-./qshell cdnrefresh --dirs -i https://blog.ziying.site/
 
 awk '{printf "https://www.blog.ziying.site/%s\n", $2, $2}' success.txt | sed -e "s/index.html//" > refresh.www.txt
 
@@ -31,4 +30,3 @@ cat refresh.www.txt
 
 # 使用七牛云工具刷新CDN缓存
 ./qshell cdnrefresh -i refresh.www.txt
-./qshell cdnrefresh --dirs -i https://www.blog.ziying.site/
