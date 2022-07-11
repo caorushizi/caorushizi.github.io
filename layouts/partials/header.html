@@ -108,7 +108,7 @@
             <li>
                 <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
                 {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
-                    <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
+                    <span  class="{{- if eq $menu_item_url $page_url }}bg-white text-black rounded-sm {{- end }} py-1 px-2">
                         {{- .Pre }}
                         {{- .Name -}}
                         {{ .Post -}}
