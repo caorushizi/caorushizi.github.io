@@ -12,6 +12,12 @@ minify:
   disableXML: true
   minifyOutput: true
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
+
 languageCode: "zh"
 defaultContentLanguage: "zh"
 defaultContentLanguageInSubdir: true
@@ -36,8 +42,9 @@ params:
   comments: true
   hidemeta: false
   hideSummary: false
-  showtoc: false
-  tocopen: false
+  showtoc: true
+  tocopen: true
+  searchHidden: false
 
   assets:
     favicon: "/favicon.ico"
@@ -50,17 +57,59 @@ params:
     hiddenInList: true # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: [ "title", "permalink", "summary", "content" ]
+
+  profileMode:
+    enabled: true
+    title: "士子☀️的博客" # optional default will be site title
+    subtitle: "这个人很懒，什么也没留下。"
+    #    imageUrl: "<image link>" # optional
+    #    imageTitle: "<title of image as alt>" # optional
+    imageWidth: 120 # custom size
+    imageHeight: 120 # custom size
+    buttons:
+      - name: 时间轴
+        url: "/archives"
+      - name: Github
+        url: "https://github.com/caorushizi"
+
+    #socialIcons: # optional
+    #  - name: "<platform>"
+    #    url: "<link>"
+    #  - name: "<platform 2>"
+    #    url: "<link2>"
+
+taxonomies:
+  tag: tags
+  category: categories
+  series: series
+
 menu:
   main:
     - identifier: index
       name: 首页
-      url: /
+      url:
       weight: 10
-    - identifier: categories
-      name: 分类
-      url: /categories/
-      weight: 30
-    - identifier: tags
-      name: 标签
-      url: /tags/
+    - identifier: posts
+      name: 文章
+      url: posts
       weight: 20
+    - identifier: search
+      name: 搜索
+      url: search
+      weight: 30
+    - identifier: archives
+      name: 时间轴
+      url: archives
+      weight: 40
+    - identifier: about
+      name: 关于
+      url: about
+      weight: 50
