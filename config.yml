@@ -22,13 +22,13 @@ defaultContentLanguage: "zh"
 defaultContentLanguageInSubdir: true
 
 params:
-  env: development # to enable google analytics, opengraph, twitter-cards and schema.
+  env: development
   title: ExampleSite
   description: "ExampleSite description"
   keywords: [ Blog, 士子☀的博客, 曹儒士子, 博客, 个人博客 ]
   author: 士子☀
   DateFormat: "2006年01月02日"
-  defaultTheme: auto # dark, light, auto
+  defaultTheme: auto
   disableThemeToggle: true
 
   ShowReadingTime: false
@@ -66,24 +66,7 @@ params:
     keys: [ "title", "permalink", "summary", "content" ]
 
   profileMode:
-    enabled: true
-    title: "士子☀️的博客" # optional default will be site title
-    subtitle: "这个人很懒，什么也没留下。"
-    #    imageUrl: "<image link>" # optional
-    #    imageTitle: "<title of image as alt>" # optional
-    imageWidth: 120 # custom size
-    imageHeight: 120 # custom size
-    buttons:
-      - name: 时间轴
-        url: "/archives"
-      - name: Github
-        url: "https://github.com/caorushizi"
-
-    #socialIcons: # optional
-    #  - name: "<platform>"
-    #    url: "<link>"
-    #  - name: "<platform 2>"
-    #    url: "<link2>"
+    enabled: false
 
 taxonomies:
   tag: tags
@@ -96,10 +79,6 @@ menu:
       name: 首页
       url:
       weight: 10
-    - identifier: posts
-      name: 文章
-      url: posts
-      weight: 20
     - identifier: search
       name: 搜索
       url: search
