@@ -29,7 +29,7 @@ params:
   author: 曹儒士子
   DateFormat: "2006年01月02日"
   defaultTheme: auto
-  disableThemeToggle: true
+  disableThemeToggle: false
 
   ShowReadingTime: false
   ShowShareButtons: false

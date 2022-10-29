@@ -1,68 +1,97 @@
 {{- /* theme-toggle is enabled */}}
 {{- if (not .Site.Params.disableThemeToggle) }}
-{{- /* theme is light */}}
-{{- if (eq .Site.Params.defaultTheme "light") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    }
+    {{- /* theme is light */}}
+    {{- if (eq .Site.Params.defaultTheme "light") }}
+        <script>
+            if (localStorage.getItem("pref-theme") === "dark") {
+                document.body.classList.add('dark');
+            }
 
-</script>
-{{- /* theme is dark */}}
-{{- else if (eq .Site.Params.defaultTheme "dark") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    }
+        </script>
+        {{- /* theme is dark */}}
+    {{- else if (eq .Site.Params.defaultTheme "dark") }}
+        <script>
+            if (localStorage.getItem("pref-theme") === "light") {
+                document.body.classList.remove('dark')
+            }
 
-</script>
-{{- else }}
-{{- /* theme is auto */}}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
+        </script>
+    {{- else }}
+        {{- /* theme is auto */}}
+        <script>
+            if (localStorage.getItem("pref-theme") === "dark") {
+                document.body.classList.add('dark');
+            } else if (localStorage.getItem("pref-theme") === "light") {
+                document.body.classList.remove('dark')
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark');
+            }
 
-</script>
-{{- end }}
-{{- /* theme-toggle is disabled and theme is auto */}}
+        </script>
+    {{- end }}
+    {{- /* theme-toggle is disabled and theme is auto */}}
 {{- else if (and (ne .Site.Params.defaultTheme "light") (ne .Site.Params.defaultTheme "dark"))}}
-<script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
+    <script>
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark');
+        }
 
-</script>
+    </script>
 {{- end }}
 
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            {{- $label_text := (.Site.Params.label.text | default .Site.Title) }}
-            {{- if .Site.Title }}
-            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
-                {{- if .Site.Params.label.icon }}
-                <img src="{{- .Site.Params.label.icon -}}" alt="logo" aria-label="logo"
-                    height="{{- .Site.Params.label.iconHeight | default " 30px" -}}">
-                {{- end -}}
-                {{- $label_text -}}
-            </a>
-            {{- end }}
-            <span class="logo-switches">
+<!-- Header-->
+<header class="header navbar-expand-lg fixed-top ">
+    <div class="container-fluid">
+        <div class="header-area ">
+            <!--logo-->
+            <div class="logo">
+                {{- $label_text := (.Site.Params.label.text | default .Site.Title) }}
+                {{- if .Site.Title }}
+                    <a href="{{ "" | absLangURL }}">
+                        {{- $label_text -}}
+                    </a>
+                {{- end }}
+            </div>
+            <div class="header-navbar">
+                <nav class="navbar">
+                    <!--navbar-collapse-->
+                    <div class="collapse navbar-collapse" id="main_nav">
+                        {{- $currentPage := . }}
+                        <ul class="navbar-nav">
+                            {{- range .Site.Menus.main }}
+                                {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
+                                {{- $page_url:= $currentPage.Permalink | absLangURL }}
+                                {{- $is_search := eq ($.Site.GetPage .KeyName).Layout `search` }}
+                                <li class="nav-item">
+                                    <a class="nav-link{{- if eq $menu_item_url $page_url }} active{{- end }}"
+                                       href="{{ .URL | absLangURL }}"
+                                    >
+                                        {{- .Pre }}
+                                        {{- .Name -}}
+                                        {{ .Post -}}
+                                    </a>
+                                </li>
+                            {{- end }}
+                        </ul>
+                    </div>
+                    <!--/-->
+                </nav>
+            </div>
+
+            <!--header-right-->
+            <div class="header-right ">
+                <!--theme-switch-->
+                <span class="logo-switches">
                 {{- if (not .Site.Params.disableThemeToggle) }}
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <button id="theme-toggle">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                     <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -75,47 +104,16 @@
                     </svg>
                 </button>
                 {{- end }}
-
-                {{- $lang := .Lang}}
-                {{- $separator := or $label_text (not .Site.Params.disableThemeToggle)}}
-                {{- with $.Site.Home.AllTranslations }}
-                <ul class="lang-switch">
-                    {{- if $separator }}<li>|</li>{{ end }}
-                    {{- range . -}}
-                    {{- if ne $lang .Lang }}
-                    <li>
-                        <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}"
-                            aria-label="{{ .Language.LanguageName | default (.Lang | title) }}">
-                            {{- if (and $.Site.Params.displayFullLangName (.Language.LanguageName)) }}
-                            {{- .Language.LanguageName | emojify -}}
-                            {{- else }}
-                            {{- .Lang | title -}}
-                            {{- end -}}
-                        </a>
-                    </li>
-                    {{- end -}}
-                    {{- end}}
-                </ul>
-                {{- end }}
             </span>
+
+                <!--navbar-toggler-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--/-->
+            </div>
         </div>
-        {{- $currentPage := . }}
-        <ul id="menu">
-            {{- range .Site.Menus.main }}
-            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
-            {{- $page_url:= $currentPage.Permalink | absLangURL }}
-            {{- $is_search := eq ($.Site.GetPage .KeyName).Layout `search` }}
-            <li>
-                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
-                    <span  class="{{- if eq $menu_item_url $page_url }}bg-white text-black rounded-sm {{- end }} py-1 px-2">
-                        {{- .Pre }}
-                        {{- .Name -}}
-                        {{ .Post -}}
-                    </span>
-                </a>
-            </li>
-            {{- end }}
-        </ul>
-    </nav>
+    </div>
 </header>
+<div style="height: 100px;"></div>
