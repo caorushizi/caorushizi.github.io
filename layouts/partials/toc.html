@@ -5,7 +5,7 @@
         <div class="toc">
             <details {{if (.Param "TocOpen") }} open{{ end }}>
                 <summary accesskey="c" title="(Alt + C)">
-                    <span class="details">{{- i18n "toc" | default "Table of Contents" }}</span>
+                    <span class="details">{{- i18n "toc" | default "文章目录" }}</span>
                 </summary>
 
                 <div class="inner">
@@ -122,9 +122,9 @@
             elements.forEach(element => {
                 const id = encodeURI(element.getAttribute('id')).toLowerCase();
                 if (element === activeElement) {
-                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                    document.querySelector(`a[href="#${id}"]`).classList.add('active');
                 } else {
-                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                    document.querySelector(`a[href="#${id}"]`).classList.remove('active');
                 }
             })
         }, false);

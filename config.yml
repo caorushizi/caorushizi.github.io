@@ -87,7 +87,3 @@ menu:
       name: 时间轴
       url: archives
       weight: 40
-    - identifier: about
-      name: 关于
-      url: about
-      weight: 50

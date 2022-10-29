@@ -27,6 +27,8 @@
       href="{{ if .Params.canonicalURL -}} {{ trim .Params.canonicalURL " " }} {{- else -}} {{ .Permalink }} {{- end }}">
 
 {{- /* Styles */}}
+<link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/font-awesome/6.0.0/css/fontawesome.min.css" type="text/css" rel="stylesheet" />
 {{- $theme_vars := (resources.Get "css/core/theme-vars.css") }}
 {{- $reset := (resources.Get "css/core/reset.css") }}
 {{- $media := (resources.Get "css/core/zmedia.css") }}
@@ -91,8 +93,6 @@
 <link rel="icon" type="image/png" sizes="32x32"
       href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
 <link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
-<link href="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/tailwindcss/2.2.19/tailwind.min.css" type="text/css" rel="stylesheet" />
-<link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/tailwindcss/2.2.19/tailwind-dark.min.css" type="text/css" rel="stylesheet" />
 <link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
 <meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
@@ -132,18 +132,8 @@
                 .list {
                     background: var(--theme);
                 }
-
-                .list:not(.dark)::-webkit-scrollbar-track {
-                    background: 0 0;
-                }
-
-                .list:not(.dark)::-webkit-scrollbar-thumb {
-                    border-color: var(--theme);
-                }
             }
 
         </style>
     {{- end }}
 </noscript>
-
-{{- partial "extend_head.html" . -}}

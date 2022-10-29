@@ -1,0 +1,56 @@
+/* pagination*/
+.pagination {
+    border-radius: 0px;
+}
+
+.pagination-area {
+    margin-bottom: 50px;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.pagination-left {
+    text-align: left;
+}
+
+.pagination-list ul li a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.pagination-list ul li a {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #E6E7E7;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 0px;
+    margin-right: 3px;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.pagination-list ul li a.active, .pagination-list ul li a:hover {
+    background-color: #191B1D;
+    color: #ffffff;
+}
+
+.dark .pagination-list ul li a.active, .dark .pagination-list ul li a:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.dark .pagination-list ul li a.active,
+.dark .pagination-list ul li a:hover {
+    background-color: #ffffff;
+}
+
+.dark .pagination-list ul li a {
+    border-color: rgba(153, 153, 153, 0.15);
+}
+
+.dark .pagination-list ul li a.active, .dark .pagination-list ul li a:hover {
+    color: #191B1D;
+}
