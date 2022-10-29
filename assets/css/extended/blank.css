@@ -13,11 +13,10 @@
 }
 
 .toc-container.wide {
-    position: absolute;
-    height: 80%;
-    border-right: 1px solid var(--border);
-    left: calc((var(--toc-width) + var(--gap)) * -1);
-    top: 0;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 100px;
     width: var(--toc-width);
 }
 
